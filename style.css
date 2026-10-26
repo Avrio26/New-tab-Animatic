@@ -1,0 +1,182 @@
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
+
+/* ===== Langit badai tenang ===== */
+body {
+  height:100vh; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(180deg, #0a0f14 0%, #141f2a 40%, #1e2c38 70%, #2a3a46 100%);
+}
+
+/* ===== Awan mendung ===== */
+.langit { position:fixed; inset:0; overflow:hidden; z-index:0; pointer-events:none; }
+.awan {
+  position:absolute; border-radius:50%;
+  filter: blur(45px); opacity:.85;
+}
+.a1 { width:60vw; height:22vh; top:-7vh; left:-12vw; background:#1b2733;
+      animation: drift 70s ease-in-out infinite alternate; }
+.a2 { width:50vw; height:18vh; top:3vh;  left:28vw;  background:#141e29;
+      animation: drift 95s ease-in-out infinite alternate-reverse; }
+.a3 { width:70vw; height:24vh; top:-9vh; left:58vw;  background:#202c39;
+      animation: drift 80s ease-in-out infinite alternate; }
+@keyframes drift {
+  from { transform: translateX(-6vw); }
+  to   { transform: translateX(6vw); }
+}
+
+/* ===== Kilat lembut ===== */
+#petir {
+  position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0;
+  background: linear-gradient(180deg,
+              rgba(215,230,255,.95), rgba(170,195,240,.4) 55%, transparent 85%);
+}
+#petir.kilat { animation: kilat .9s ease-out; }
+@keyframes kilat {
+  0%   { opacity:0; }
+  8%   { opacity:.26; }
+  14%  { opacity:.05; }
+  22%  { opacity:.18; }
+  35%  { opacity:.03; }
+  100% { opacity:0; }
+}
+
+/* ===== Gerimis miring ===== */
+#hujan { position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
+.titik {
+  position:absolute; top:-16px; width:2px; height:16px; border-radius:2px;
+  background:rgba(200,220,255,.4);
+  animation:jatuh linear infinite;
+}
+@keyframes jatuh { to { transform:translateY(115vh) translateX(-5vw); } }
+
+/* ===== Konten utama ===== */
+.konten { text-align:center; color:#fff; z-index:2; }
+#jam { font-size:76px; font-weight:200; text-shadow:0 4px 20px rgba(0,0,0,.4); }
+#tanggal { opacity:.85; margin-bottom:28px; }
+
+.kotak-cari input {
+  width:480px; padding:16px 24px; border:none; border-radius:50px; outline:none;
+  font-size:16px; color:#fff;
+  background:rgba(255,255,255,.12); backdrop-filter:blur(12px);
+  box-shadow:0 8px 32px rgba(0,0,0,.25); transition:.3s;
+}
+.kotak-cari input::placeholder { color:rgba(255,255,255,.6); }
+.kotak-cari input:focus { background:rgba(255,255,255,.2); transform:scale(1.03); }
+
+/* ===== Shortcut bulat ala Chrome ===== */
+.shortcuts { margin-top:34px; display:flex; gap:20px; justify-content:center; flex-wrap:wrap; max-width:920px; }
+.sc { display:flex; flex-direction:column; align-items:center; gap:8px; text-decoration:none; width:96px; position:relative; }
+.sc-icon {
+  width:52px; height:52px; border-radius:50%;
+  background:rgba(0,0,0,.45); backdrop-filter:blur(6px);
+  display:flex; align-items:center; justify-content:center;
+  transition:transform .25s, background .25s;
+  box-shadow:0 4px 14px rgba(0,0,0,.3);
+}
+.sc-icon img { width:28px; height:28px; border-radius:6px; object-fit:cover; }
+.sc:hover .sc-icon { transform:scale(1.12) translateY(-4px); background:rgba(0,0,0,.65); }
+.sc-label {
+  color:#fff; font-size:12px; text-shadow:0 1px 4px rgba(0,0,0,.7);
+  max-width:96px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+
+/* Tombol edit/hapus shortcut */
+.sc-tools {
+  position:absolute; top:-8px; right:8px;
+  display:flex; gap:4px; opacity:0; transition:.2s;
+}
+.sc:hover .sc-tools { opacity:1; }
+.sc-tools button {
+  width:22px; height:22px; border:none; border-radius:50%;
+  background:rgba(0,0,0,.7); color:#fff; font-size:11px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+}
+.sc-edit:hover { background:#3498db !important; }
+.sc-del:hover  { background:#e74c3c !important; }
+
+/* Tombol tambah shortcut */
+.sc-add { background:none; border:none; cursor:pointer; }
+.add-icon {
+  font-size:24px; color:#fff;
+  background:rgba(255,255,255,.12);
+  border:2px dashed rgba(255,255,255,.5);
+}
+.sc-add:hover .add-icon { background:rgba(255,255,255,.25); transform:scale(1.1); }
+
+/* ===== Maskot ===== */
+.maskot {
+  position:fixed; z-index:1;
+  pointer-events:none;
+  filter:drop-shadow(0 14px 22px rgba(0,0,0,.35));
+}
+.maskot-kanan {
+  right:4%; width:240px; bottom:55px;    /* Nailong 1: berdiri di antara rumput */
+  animation: bob 3.2s ease-in-out infinite;
+}
+.maskot-kiri {
+  left:4%; width:400px; bottom:75px;    /* Nailong 2: berdiri DI ATAS rumput */
+  animation: goyang 4s ease-in-out infinite;
+}
+@keyframes bob {
+  0%,100% { transform:translateY(0) rotate(-2deg); }
+  50%     { transform:translateY(-16px) rotate(2deg); }
+}
+@keyframes goyang {
+  0%,100% { transform:scaleX(-1) translateY(0) rotate(3deg); }
+  50%     { transform:scaleX(-1) translateY(-10px) rotate(-4deg); }
+}
+/* Kalau gambar Nailong 2 sudah menghadap kanan, hapus semua "scaleX(-1)" di atas. */
+
+/* ===== Rumput hijau tinggi bergoyang ===== */
+.rumput {
+  position:fixed; left:0; right:0; bottom:0; height:130px;
+  z-index:9999; pointer-events:none; overflow:hidden;
+}
+.rumput::before {  /* tanah rumput */
+  content:""; position:absolute; left:0; right:0; bottom:0; height:100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(12,34,18,.55) 55%, #0c2a14 100%);
+}
+.daun {
+  position:absolute; bottom:-2px;
+  border-radius: 50% 50% 0 0 / 85% 85% 0 0;
+  transform-origin: bottom center;
+  animation: sway ease-in-out infinite alternate;
+}
+@keyframes sway {
+  from { transform: rotate(-10deg); }
+  to   { transform: rotate(10deg); }
+}
+
+/* ===== Tulisan kredit ===== */
+.kredit {
+  position:fixed; left:0; right:0; bottom:22px; z-index:10000;
+  text-align:center; pointer-events:none;
+  color:#eaffea; font-size:13px; letter-spacing:2px;
+  text-shadow:0 2px 10px rgba(0,0,0,.75), 0 0 12px rgba(90,255,120,.35);
+}
+
+/* ===== Modal ===== */
+.modal-wrap {
+  position:fixed; inset:0; z-index:10;
+  background:rgba(0,0,0,.5); backdrop-filter:blur(4px);
+  display:flex; align-items:center; justify-content:center;
+}
+.modal-wrap[hidden] { display:none; }
+.modal {
+  background:rgba(25,25,35,.92); backdrop-filter:blur(20px);
+  padding:26px 28px; border-radius:18px; width:340px; color:#fff;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+  border:1px solid rgba(255,255,255,.15);
+  display:flex; flex-direction:column; gap:14px;
+}
+.modal input {
+  padding:12px 14px; border-radius:10px; outline:none; font-size:14px;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.08); color:#fff;
+}
+.modal input:focus { border-color:#7873f5; }
+.modal-btn { display:flex; justify-content:flex-end; gap:10px; }
+.btn { padding:10px 18px; border:none; border-radius:10px; cursor:pointer; font-size:14px; }
+.btn.sekunder { background:rgba(255,255,255,.12); color:#fff; }
+.btn.primer { background:#7873f5; color:#fff; }
+.btn.primer:hover { background:#8f8bff; }

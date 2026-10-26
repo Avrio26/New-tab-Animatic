@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Tab Baru</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Langit mendung + kilat -->
+  <div class="langit">
+    <div class="awan a1"></div>
+    <div class="awan a2"></div>
+    <div class="awan a3"></div>
+  </div>
+  <div id="petir"></div>
+  <div id="hujan"></div>
+
+  <!-- Maskot: Nailong 1 di antara rumput, Nailong 2 berdiri di atas rumput -->
+  <!-- Sesuaikan nama file kalau punyamu beda (misal dua-duanya .gif) -->
+  <img src="nailong.gif"  class="maskot maskot-kanan" alt="Nailong 1">
+  <img src="nailong2.gif" class="maskot maskot-kiri"  alt="Nailong 2">
+
+  <main class="konten">
+    <h1 id="jam">00:00</h1>
+    <p id="tanggal"></p>
+
+    <form action="https://www.google.com/search" method="GET" class="kotak-cari">
+      <input type="text" name="q" placeholder="Cari di Google..." autofocus>
+    </form>
+
+    <!-- Shortcut diisi otomatis dari script.js -->
+    <nav class="shortcuts" id="shortcuts"></nav>
+  </main>
+
+  <!-- Rumput bergerak + kredit di bawah layar -->
+  <div class="rumput" id="rumput"></div>
+  <div class="kredit">Made by : Arvyo</div>
+
+  <!-- Modal tambah/edit shortcut -->
+  <div class="modal-wrap" id="modalWrap" hidden>
+    <div class="modal">
+      <h3 id="modalJudul">Tambah Shortcut</h3>
+      <input type="text" id="inputNama" placeholder="Nama (contoh: WA Kicaw)">
+      <input type="text" id="inputUrl" placeholder="Link (contoh: web.whatsapp.com)">
+      <input type="text" id="inputIcon" placeholder="Icon opsional: nama file (icon-wa.gif) atau url https://...">
+      <div class="modal-btn">
+        <button id="btnBatal" class="btn sekunder">Batal</button>
+        <button id="btnSimpan" class="btn primer">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
